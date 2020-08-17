@@ -13,5 +13,14 @@
 
 
 <a [href]="link">TEST</a>
-<app-server></app-server>
-<app-server></app-server>
+<app-server *ngFor="let item of servers"></app-server>
+<p *ngFor="let server of servers">{{server}}</p>
+
+
+<hr>
+<hr>
+<button (click)='onDisplayDetailsClick()'>Display Details</button>
+<p *ngIf='isParaVisible'>Secret Pass</p>
+<p *ngFor='let item of logClick; let i = index' [ngStyle]='{backgroundColor:i>3?"red":"blue"}'
+    [ngClass]='{whiteClass: i>3}'>count:
+    {{item}}</p>

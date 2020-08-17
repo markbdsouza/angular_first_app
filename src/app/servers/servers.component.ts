@@ -11,6 +11,10 @@ export class ServersComponent implements OnInit {
   serverName: string = "asd";
   isServerCreated: boolean = false;
   username: string = "";
+  servers: Array<string> = ["TestServer1", "TestServer2"];
+  isParaVisible: boolean = true;
+  logClick = [];
+
   constructor() {
     setTimeout(() => {
       this.allowNewServer = true;
@@ -21,10 +25,21 @@ export class ServersComponent implements OnInit {
 
   onCreateServer() {
     this.isServerCreated = true;
+    this.servers.push(this.serverName);
     this.serverCreationStatus = `server was created. Name is ${this.serverName}`;
+    console.log(this.servers);
   }
 
   onUpdateServerName(e: Event) {
     this.serverName = (<HTMLInputElement>e.target).value;
+  }
+
+  onDisplayDetailsClick() {
+    this.isParaVisible = !this.isParaVisible;
+    this.logClick.push(new Date());
+  }
+
+  getBgColor() {
+    return this.logClick.length > 5 ? "blue" : "transparent";
   }
 }
